@@ -376,6 +376,18 @@ public class GeneralSnmp extends AbstractProtocol {
                 case 2:
                     return false;
             }
+            
+            varInjectResult = this.injectVariable(snmpSetValue);
+            switch(varInjectResult.getStatus()) {
+                case 0:
+                	snmpSetValue = varInjectResult.getResult();
+                    break;
+                case 1:
+                    skipCommand = true;
+                    break;
+                case 2:
+                    return false;
+            }
 
             /*
              * Parsing job timeout to integer
