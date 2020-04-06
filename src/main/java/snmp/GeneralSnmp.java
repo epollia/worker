@@ -377,18 +377,6 @@ public class GeneralSnmp extends AbstractProtocol {
                     return false;
             }
             
-            varInjectResult = this.injectVariable(snmpSetValue);
-            switch(varInjectResult.getStatus()) {
-                case 0:
-                	snmpSetValue = varInjectResult.getResult();
-                    break;
-                case 1:
-                    skipCommand = true;
-                    break;
-                case 2:
-                    return false;
-            }
-
             /*
              * Parsing job timeout to integer
              */
@@ -408,6 +396,17 @@ public class GeneralSnmp extends AbstractProtocol {
                 /*
                  * --------SNMP SET CASE----------
                  */
+            	varInjectResult = this.injectVariable(snmpSetValue);
+                switch(varInjectResult.getStatus()) {
+                    case 0:
+                    	snmpSetValue = varInjectResult.getResult();
+                        break;
+                    case 1:
+                        skipCommand = true;
+                        break;
+                    case 2:
+                        return false;
+                }
 
                 // Case: empty SNMP set value
                 if(snmpSetValue == null || snmpSetValue.length() == 0) {
