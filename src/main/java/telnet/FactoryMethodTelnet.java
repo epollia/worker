@@ -48,6 +48,7 @@ public class FactoryMethodTelnet {
         put("Mikrotik", null);
         put("Nortel", null);
         put("BDCOM", null);
+        put("CDATA", null);
         //put("Extream", null); todo implement
     }};
 
